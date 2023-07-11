@@ -1,47 +1,106 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+// import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+  <header class="head">
+    <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
+    <h1>今天我想玩</h1>
   </header>
 
-  <main>
-    <TheWelcome />
+  <section class="option">
+
+  </section>
+
+  <main class="result">
+
   </main>
+
+  <section class="clear">
+
+  </section>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+@font-face {
+font-family: FFF-Neostandard;
+src:url('//cpk.moe/random-nitrome-game/FFF-Neostandard.ttf');
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+body {
+    text-align: center;
+    margin: 0;
+    background: #f9ecc3;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+a {
+    text-decoration: none;
+    color: #a47719;;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.head {
+    background: #a47719;
+    padding: 20px 0;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.head h1 {
+    margin: 0;
+}
+
+.option {
+    padding: 20px 0;
+    border-bottom: #967227 solid 1px;
+}
+
+.float-left {
+    float: left; 
+    width: 100px;
+    font-size: small;
+    visibility: hidden;
+}
+
+.float-right {
+    float: right; 
+    width: 100px;
+    font-size: small;
+}
+
+.gameOpt a {
+    display: inline-block;
+    width: 20%;
+    margin: 5px 10px;
+}
+
+.gameOpt a:hover {
+    color: #999;
+    text-decoration: line-through;
+}
+
+.float {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #f9ecc3;
+    display: none;
+}
+
+.result {
+    margin: 20px 0 85px 0;
+    font-size: 300%;
+    font-family: FFF-Neostandard;
+}
+
+.result p {
+    margin: 10px 0;
+}
+
+.clear {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: #f9ecc3;
+    border-top: #967227 solid 1px;
 }
 </style>
