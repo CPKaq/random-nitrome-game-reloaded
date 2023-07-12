@@ -1,28 +1,57 @@
-<script setup>
+<script>
 // import HelloWorld from './components/HelloWorld.vue'
 // import TheWelcome from './components/TheWelcome.vue'
+import HeaderTitle from './components/Head.vue'
+import OptionBox from './components/Option.vue'
+import ResultBox from './components/Result.vue'
+import ClearBox from './components/Clear.vue'
+
+export default {
+  components: {
+    HeaderTitle,
+    OptionBox,
+    ResultBox,
+    ClearBox
+},
+  data() {
+    return {
+      msgList: []
+    }
+  },
+  methods: {
+    addList(msg) {
+      this.msgList.push(msg);
+    },
+    clearList() {
+      this.msgList.length = 0;
+    }
+  }
+}
 </script>
 
 <template>
   <header class="head">
     <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
-    <h1>今天我想玩</h1>
+    <header-title />
   </header>
 
   <section class="option">
+    <option-box @roll="(msg) => addList(msg)">
+      
+    </option-box>
 
   </section>
 
   <main class="result">
-
+    <result-box :gameList="msgList" />
   </main>
 
-  <section class="clear">
-
+  <section v-if="msgList.length" class="clear">
+    <clear-box @clear="clearList"/>
   </section>
 </template>
 
-<style scoped>
+<style>
 @font-face {
 font-family: FFF-Neostandard;
 src:url('//cpk.moe/random-nitrome-game/FFF-Neostandard.ttf');
@@ -51,30 +80,6 @@ a {
 .option {
     padding: 20px 0;
     border-bottom: #967227 solid 1px;
-}
-
-.float-left {
-    float: left; 
-    width: 100px;
-    font-size: small;
-    visibility: hidden;
-}
-
-.float-right {
-    float: right; 
-    width: 100px;
-    font-size: small;
-}
-
-.gameOpt a {
-    display: inline-block;
-    width: 20%;
-    margin: 5px 10px;
-}
-
-.gameOpt a:hover {
-    color: #999;
-    text-decoration: line-through;
 }
 
 .float {
