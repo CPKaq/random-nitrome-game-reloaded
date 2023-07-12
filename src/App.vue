@@ -15,17 +15,36 @@ export default {
 },
   data() {
     return {
+      nitromeGameList: [],
       msgList: []
     }
   },
   methods: {
+    async loadList() {
+      this.loading = true;
+      this.error = null;
+      try {
+        const response = await fetch("/game.json");
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        this.nitromeGameList = await response.json();
+      } catch (err) {
+        this.error = err.message;
+      } finally {
+        this.loading = false;
+      }
+    },
     addList(msg) {
       this.msgList.push(msg);
     },
     clearList() {
       this.msgList.length = 0;
     }
-  }
+  },
+  mounted() {
+    this.loadList();
+  },
 }
 </script>
 
@@ -37,10 +56,12 @@ export default {
 
   <section class="option">
     <option-box @roll="(msg) => addList(msg)">
-      
     </option-box>
-
   </section>
+
+  <div>
+    <p v-for="game in nitromeGameList">{{ game }}</p>
+  </div>
 
   <main class="result">
     <result-box :gameList="msgList" />
