@@ -17,28 +17,31 @@ export default {
 },
   data() {
     return {
-      candidateGameList: [],
-      msgList: []
+      candidateList: [],
+      selectedList: [],
+      bannedList: []
     }
   },
   methods: {
     async loadList() {
-      this.candidateGameList = nitromeGameList;
+      this.candidateList = nitromeGameList;
     },
-    addList(msg) {
-      this.msgList.push(msg);
+    addList(index) {
+      this.selectedList.push(this.candidateList[index]);
+      this.candidateList.splice(index, 1)
+      console.log(this.selectedList.join())
     },
     clearList() {
-      this.msgList.length = 0;
+      this.selectedList.length = 0;
     },
-    randomElement() {
-      length = this.candidateGameList.length;
-      return this.candidateGameList[Math.floor(Math.random()*length)];
+    randomElemIndex() {
+      length = this.candidateList.length;
+      return Math.floor(Math.random()*length);
     }
   },
   mounted() {
     this.loadList();
-    console.log(this.candidateGameList);
+    console.log(this.candidateList);
   },
 }
 </script>
@@ -50,19 +53,15 @@ export default {
   </header>
 
   <section class="option">
-    <option-box @roll="(msg) => addList(randomElement())">
+    <option-box @roll="() => addList(randomElemIndex())">
     </option-box>
   </section>
 
-  <div>
-    <p v-for="game in nitromeGameList">{{ game }}</p>
-  </div>
-
   <main class="result">
-    <result-box :gameList="msgList" />
+    <result-box :gameList="selectedList" />
   </main>
 
-  <section v-if="msgList.length" class="clear">
+  <section v-if="selectedList.length" class="clear">
     <clear-box @clear="clearList"/>
   </section>
 </template>

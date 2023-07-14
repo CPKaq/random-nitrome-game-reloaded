@@ -11,12 +11,9 @@
 export default {
   // 声明触发的事件
   emits: ['roll'],
-  // created() {
-  //   this.$emit('roll', 'test')
-  // }
   methods: {
     rollBtn() {
-      this.$emit('roll', 'test');
+      this.$emit('roll');
     }
   }
 }
