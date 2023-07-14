@@ -6,7 +6,7 @@
   </div>
   <div class="gameOpt" v-if="gameListShow">
     <a v-for="elem in gameList" @click="this.$emit('ban', elem)" 
-    :class="(selectedList.includes(elem) ? 'selected' : '') + (bannedList.includes(elem) ? 'banned' : '')"
+    :class="(bannedList.includes(elem) ? 'banned' : '') || (selectedList.includes(elem) ? 'selected' : '')"
     >{{ elem }}</a>
   </div>
 </template>
