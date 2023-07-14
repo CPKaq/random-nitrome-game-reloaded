@@ -6,6 +6,8 @@ import OptionBox from './components/Option.vue'
 import ResultBox from './components/Result.vue'
 import ClearBox from './components/Clear.vue'
 
+import nitromeGameList from './components/games.js'
+
 export default {
   components: {
     HeaderTitle,
@@ -15,35 +17,28 @@ export default {
 },
   data() {
     return {
-      nitromeGameList: [],
+      candidateGameList: [],
       msgList: []
     }
   },
   methods: {
     async loadList() {
-      this.loading = true;
-      this.error = null;
-      try {
-        const response = await fetch("/game.json");
-        if (!response.ok) {
-          throw new Error(`HTTP error ${response.status}`);
-        }
-        this.nitromeGameList = await response.json();
-      } catch (err) {
-        this.error = err.message;
-      } finally {
-        this.loading = false;
-      }
+      this.candidateGameList = nitromeGameList;
     },
     addList(msg) {
       this.msgList.push(msg);
     },
     clearList() {
       this.msgList.length = 0;
+    },
+    randomElement() {
+      length = this.candidateGameList.length;
+      return this.candidateGameList[Math.floor(Math.random()*length)];
     }
   },
   mounted() {
     this.loadList();
+    console.log(this.candidateGameList);
   },
 }
 </script>
@@ -55,7 +50,7 @@ export default {
   </header>
 
   <section class="option">
-    <option-box @roll="(msg) => addList(msg)">
+    <option-box @roll="(msg) => addList(randomElement())">
     </option-box>
   </section>
 

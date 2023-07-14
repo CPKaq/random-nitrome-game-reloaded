@@ -1,4 +1,4 @@
-[
+export default [
     "Hot Air", 
     "Sandman",
     "Chick Flick",
