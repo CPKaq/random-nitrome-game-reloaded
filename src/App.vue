@@ -6,7 +6,7 @@ import OptionBox from './components/Option.vue'
 import ResultBox from './components/Result.vue'
 import ClearBox from './components/Clear.vue'
 
-import nitromeGameList from './components/games.js'
+import gameList from './components/games.js'
 
 export default {
   components: {
@@ -17,6 +17,7 @@ export default {
 },
   data() {
     return {
+      nitromeGameList: [],
       candidateList: [],
       selectedList: [],
       bannedList: []
@@ -24,19 +25,31 @@ export default {
   },
   methods: {
     async loadList() {
-      this.candidateList = nitromeGameList;
+      this.nitromeGameList = gameList;
+      this.candidateList = gameList.slice();
     },
-    addList(index) {
-      this.selectedList.push(this.candidateList[index]);
-      this.candidateList.splice(index, 1)
+    addToList(elem) {
+      this.selectedList.push(elem);
+      // this.candidateList.splice(this.candidateList.indexOf(elem), 1)
       console.log(this.selectedList.join())
+    },
+    BanFromList(elem) {
+      if(this.bannedList.includes(elem)) {
+        this.bannedList.splice(this.bannedList.indexOf(elem), 1)
+      } else {
+        this.bannedList.push(elem);
+      }
+      // this.candidateList.splice(this.candidateList.indexOf(elem), 1)
+      console.log(this.bannedList.join())
     },
     clearList() {
       this.selectedList.length = 0;
     },
-    randomElemIndex() {
+    randomElem() {
+      this.candidateList = this.nitromeGameList.filter(
+        elem => !this.selectedList.includes(elem) && !this.bannedList.includes(elem))
       length = this.candidateList.length;
-      return Math.floor(Math.random()*length);
+      return this.candidateList[Math.floor(Math.random()*length)];
     }
   },
   mounted() {
@@ -53,7 +66,11 @@ export default {
   </header>
 
   <section class="option">
-    <option-box @roll="() => addList(randomElemIndex())">
+    <option-box @roll="() => addToList(randomElem())" 
+      @ban="(banned) => BanFromList(banned)"
+      :gameList="nitromeGameList" 
+      :selectedList="selectedList"
+      :bannedList="bannedList">
     </option-box>
   </section>
 

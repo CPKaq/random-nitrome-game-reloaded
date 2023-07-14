@@ -2,18 +2,37 @@
   <div class="float-left">使用说明</div>
   <button @click="rollBtn">抽取游戏</button>
   <div class="float-right">
-    <a id="gameListLink">▼游戏列表</a>
+    <a id="gameListLink" @click="gameListClick">{{ gameListText }}</a>
   </div>
-  <div class="gameOpt"></div>
+  <div class="gameOpt" v-if="gameListShow">
+    <a v-for="elem in gameList" @click="this.$emit('ban', elem)" 
+    :class="(selectedList.includes(elem) ? 'selected' : '') + (bannedList.includes(elem) ? 'banned' : '')"
+    >{{ elem }}</a>
+  </div>
 </template>
 
 <script>
 export default {
-  // 声明触发的事件
-  emits: ['roll'],
+  data() {
+    return {
+      gameListShow: false,
+      gameListText: '▼游戏列表'
+    }
+  },
+  emits: ['roll', 'ban'],
+  props: {
+    gameList: Array,
+    selectedList: Array,
+    bannedList: Array
+  },
   methods: {
     rollBtn() {
       this.$emit('roll');
+    },
+    gameListClick() {
+      this.gameListShow = !this.gameListShow;
+      this.gameListText = this.gameListShow ? '▼游戏列表' : '▲游戏列表';
+      console.log(this.gameList)
     }
   }
 }
@@ -42,5 +61,16 @@ export default {
 .gameOpt a:hover {
     color: #999;
     text-decoration: line-through;
+}
+
+.selected {
+  border: #a47719 solid 2px;
+  border-radius: 4px;
+}
+
+.banned {
+  border: #999 solid 2px;
+  border-radius: 4px;
+  color: #999;
 }
 </style>
