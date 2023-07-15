@@ -5,8 +5,9 @@
     <a id="gameListLink" @click="gameListClick">{{ gameListText }}</a>
   </div>
   <div class="gameOpt" v-if="gameListShow">
-    <a v-for="elem in gameList" @click="this.$emit('ban', elem)" 
-    :class="(bannedList.includes(elem) ? 'banned' : '') || (selectedList.includes(elem) ? 'selected' : '')"
+    <a 
+      v-for="elem in gameList" @click="this.$emit('ban', elem)" 
+      :class="{ banned: bannedList.includes(elem), selected: selectedList.includes(elem) }"
     >{{ elem }}</a>
   </div>
 </template>
@@ -60,7 +61,7 @@ export default {
 
 .gameOpt a:hover {
     color: #999;
-    text-decoration: line-through;
+    background: #99999933;
 }
 
 .selected {
