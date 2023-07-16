@@ -2,11 +2,13 @@
   <div class="float-left">使用说明</div>
   <button @click="rollBtn">抽取游戏</button>
   <div class="float-right">
-    <a id="gameListLink" @click="gameListClick">{{ gameListText }}</a>
+    <a id="gameListLink" @click="gameListClick" class="link">{{ gameListText }}</a>
   </div>
   <div class="gameOpt" v-if="gameListShow">
     <a 
-      v-for="elem in gameList" @click="this.$emit('ban', elem)" 
+      v-for="elem in gameList" 
+      @click="this.$emit('ban', elem)" 
+      class="link"
       :class="{ banned: bannedList.includes(elem), selected: selectedList.includes(elem) }"
     >{{ elem }}</a>
   </div>
@@ -40,6 +42,10 @@ export default {
 </script>
 
 <style>
+.link {
+  cursor: pointer;
+}
+
 .float-left {
     float: left; 
     width: 100px;
