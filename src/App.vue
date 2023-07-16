@@ -65,7 +65,7 @@ export default {
     <header-title />
   </header>
 
-  <section class="option">
+  <section>
     <option-box @roll="() => addToList(randomElem())" 
       @ban="(banned) => BanFromList(banned)"
       :gameList="nitromeGameList" 
@@ -112,14 +112,6 @@ a {
 .option {
     padding: 20px 0;
     border-bottom: #967227 solid 1px;
-}
-
-.float {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: #f9ecc3;
-    display: none;
 }
 
 .result {
