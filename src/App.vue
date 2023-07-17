@@ -32,6 +32,7 @@ export default {
       this.selectedList.push(elem);
       // this.candidateList.splice(this.candidateList.indexOf(elem), 1)
       console.log(this.selectedList.join())
+      window.scrollBy(0, document.documentElement.clientHeight);
     },
     BanFromList(elem) {
       if(this.bannedList.includes(elem)) {
