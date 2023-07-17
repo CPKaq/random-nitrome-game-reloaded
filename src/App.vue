@@ -29,7 +29,6 @@ export default {
     addToList(elem) {
       this.selectedList.push(elem);
       // console.log(this.selectedList.join())
-      window.scrollBy(0, document.documentElement.clientHeight);
     },
     BanFromList(elem) {
       if(this.bannedList.includes(elem)) {

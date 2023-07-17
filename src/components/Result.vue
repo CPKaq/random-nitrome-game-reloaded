@@ -8,6 +8,9 @@
 export default {
   props: {
     gameList: Array
+  },
+  updated() {
+    window.scrollBy(0, document.documentElement.clientHeight)
   }
 }
 </script>
