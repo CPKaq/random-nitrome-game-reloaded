@@ -1,5 +1,5 @@
 <template>
-  <div ref="option" class="option">
+  <section ref="option" class="option">
     <div class="float-left">使用说明</div>
     <button @click="rollBtn">抽取游戏</button>
     <div class="float-right" @scroll="pageScroll">
@@ -13,10 +13,10 @@
       :class="{ banned: bannedList.includes(elem), selected: selectedList.includes(elem) }"
       >{{ elem }}</a>
     </div>
-  </div>
-  <div class="option float" v-if="floatBox">
+  </section>
+  <section class="option float" v-if="floatBox">
     <button @click="rollBtn">抽取游戏</button>
-  </div>
+  </section>
 </template>
 
 <script>

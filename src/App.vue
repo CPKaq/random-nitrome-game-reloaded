@@ -61,27 +61,19 @@ export default {
 </script>
 
 <template>
-  <header class="head">
-    <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
-    <header-title />
-  </header>
+  
+  <header-title />
 
-  <section>
-    <option-box @roll="() => addToList(randomElem())" 
-      @ban="(banned) => BanFromList(banned)"
-      :gameList="nitromeGameList" 
-      :selectedList="selectedList"
-      :bannedList="bannedList">
-    </option-box>
-  </section>
+  <option-box @roll="() => addToList(randomElem())" 
+    @ban="(banned) => BanFromList(banned)"
+    :gameList="nitromeGameList" 
+    :selectedList="selectedList"
+    :bannedList="bannedList" />
 
-  <main class="result">
-    <result-box :gameList="selectedList" />
-  </main>
+  <result-box :gameList="selectedList" />
 
-  <section v-if="selectedList.length" class="clear">
-    <clear-box @clear="clearList"/>
-  </section>
+  <clear-box v-if="selectedList.length" @clear="clearList"/>
+
 </template>
 
 <style>

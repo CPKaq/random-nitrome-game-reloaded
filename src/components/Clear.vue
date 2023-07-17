@@ -1,7 +1,7 @@
 <template>
-  <div class="clear" id="clrBtn">
+  <section class="clear" id="clrBtn">
     <button @click="this.$emit('clear')">不玩了</button>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,5 +1,7 @@
 <template>
-  <p v-for="msg in gameList">{{ msg }}</p>
+  <main class="result">
+    <p v-for="msg in gameList">{{ msg }}</p>
+  </main>
 </template>
 
 <script>
