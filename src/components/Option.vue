@@ -2,7 +2,7 @@
   <section ref="option" class="option">
     <div class="float-left">使用说明</div>
     <button @click="rollBtn">抽取游戏</button>
-    <div class="float-right" @scroll="pageScroll">
+    <div class="float-right">
       <a id="gameListLink" @click="gameListClick" class="link">{{ gameListText }}</a>
     </div>
     <div class="gameOpt" v-if="gameListShow">
@@ -41,10 +41,7 @@ export default {
     gameListClick() {
       this.gameListShow = !this.gameListShow;
       this.gameListText = this.gameListShow ? '▼游戏列表' : '▲游戏列表';
-      console.log(this.gameList)
-    },
-    pageScroll(event) {
-      console.log(event)
+      // console.log(this.gameList)
     }
   },
   mounted() {

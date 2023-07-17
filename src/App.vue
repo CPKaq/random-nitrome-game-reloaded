@@ -1,6 +1,4 @@
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import TheWelcome from './components/TheWelcome.vue'
 import HeaderTitle from './components/Head.vue'
 import OptionBox from './components/Option.vue'
 import ResultBox from './components/Result.vue'
@@ -30,8 +28,7 @@ export default {
     },
     addToList(elem) {
       this.selectedList.push(elem);
-      // this.candidateList.splice(this.candidateList.indexOf(elem), 1)
-      console.log(this.selectedList.join())
+      // console.log(this.selectedList.join())
       window.scrollBy(0, document.documentElement.clientHeight);
     },
     BanFromList(elem) {
@@ -40,8 +37,7 @@ export default {
       } else {
         this.bannedList.push(elem);
       }
-      // this.candidateList.splice(this.candidateList.indexOf(elem), 1)
-      console.log(this.bannedList.join())
+      // console.log(this.bannedList.join())
     },
     clearList() {
       this.selectedList.length = 0;
@@ -55,7 +51,7 @@ export default {
   },
   mounted() {
     this.loadList();
-    console.log(this.candidateList);
+    // console.log(this.candidateList);
   },
 }
 </script>
